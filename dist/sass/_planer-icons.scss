@@ -1,0 +1,164 @@
+@font-face {
+	font-family: "planer-icons";
+	src: url('../fonts/planer-icons.eot');
+	src: url('../fonts/planer-icons.eot?#iefix') format('eot'),
+		url('../fonts/planer-icons.woff2') format('woff2'),
+		url('../fonts/planer-icons.woff') format('woff'),
+		url('../fonts/planer-icons.ttf') format('truetype'),
+		url('../fonts/planer-icons.svg#planer-icons') format('svg');
+}
+
+@mixin icon-styles {
+	font-family: "planer-icons";
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	// speak: none; // only necessary if not using the private unicode range (firstGlyph option)
+	text-decoration: none;
+	text-transform: none;
+}
+
+%icon {
+	@include icon-styles;
+}
+
+@function icon-char($filename) {
+	$char: "";
+
+	@if $filename == cancel {
+		$char: "\E001";
+	}
+	@if $filename == check {
+		$char: "\E002";
+	}
+	@if $filename == check_box {
+		$char: "\E003";
+	}
+	@if $filename == check_box_outline {
+		$char: "\E004";
+	}
+	@if $filename == edit {
+		$char: "\E005";
+	}
+	@if $filename == edit-not_active {
+		$char: "\E006";
+	}
+	@if $filename == list {
+		$char: "\E007";
+	}
+	@if $filename == lock-blue {
+		$char: "\E008";
+	}
+	@if $filename == lock-grey {
+		$char: "\E009";
+	}
+	@if $filename == logout {
+		$char: "\E00A";
+	}
+	@if $filename == star {
+		$char: "\E00B";
+	}
+	@if $filename == time {
+		$char: "\E00C";
+	}
+	@if $filename == user {
+		$char: "\E00D";
+	}
+	@if $filename == warning {
+		$char: "\E00E";
+	}
+	@if $filename == account_circle-blue {
+		$char: "\E00F";
+	}
+	@if $filename == account_circle-grey {
+		$char: "\E010";
+	}
+	@if $filename == add {
+		$char: "\E011";
+	}
+	@if $filename == arrow {
+		$char: "\E012";
+	}
+	@if $filename == bell {
+		$char: "\E013";
+	}
+	@if $filename == bell-not_active {
+		$char: "\E014";
+	}
+
+	@return $char;
+}
+
+@mixin icon($filename, $insert: before, $extend: true) {
+	&:#{$insert} {
+		@if $extend {
+			@extend %icon;
+		} @else {
+			@include icon-styles;
+		}
+		content: icon-char($filename);
+	}
+}
+
+.icon-cancel {
+	@include icon(cancel);
+}
+.icon-check {
+	@include icon(check);
+}
+.icon-check_box {
+	@include icon(check_box);
+}
+.icon-check_box_outline {
+	@include icon(check_box_outline);
+}
+.icon-edit {
+	@include icon(edit);
+}
+.icon-edit-not_active {
+	@include icon(edit-not_active);
+}
+.icon-list {
+	@include icon(list);
+}
+.icon-lock-blue {
+	@include icon(lock-blue);
+}
+.icon-lock-grey {
+	@include icon(lock-grey);
+}
+.icon-logout {
+	@include icon(logout);
+}
+.icon-star {
+	@include icon(star);
+}
+.icon-time {
+	@include icon(time);
+}
+.icon-user {
+	@include icon(user);
+}
+.icon-warning {
+	@include icon(warning);
+}
+.icon-account_circle-blue {
+	@include icon(account_circle-blue);
+}
+.icon-account_circle-grey {
+	@include icon(account_circle-grey);
+}
+.icon-add {
+	@include icon(add);
+}
+.icon-arrow {
+	@include icon(arrow);
+}
+.icon-bell {
+	@include icon(bell);
+}
+.icon-bell-not_active {
+	@include icon(bell-not_active);
+}
