@@ -16,12 +16,17 @@
 
 		init() {
             var self = this;
-            // this.checkTocken();
+            this.checkToken();
             if (this._form == undefined || this._allInputReq == undefined) {
                 console.error('Form elements undefined');
             } else {
                 this.formEvents(self);
             }
+        }
+
+        checkToken(){
+        	localStorage.getItem('taskTocken') || sessionStorage.getItem('taskTocken') ?
+        		window.location = '/task' : false;
         }
 
 		formEvents(self) {
@@ -40,10 +45,10 @@
                 });
                 console.log(self._formData);
                 
-            self._canSend ? self.sendFormAjax(self._formData) : console.error('input regexp test error');
+            self._canSend ? self.sendFormAjax(self._formData, self) : console.error('input regexp test error');
             })
         }
-		sendFormAjax(data) {
+		sendFormAjax(data, self) {
 			console.log('all')
             $.ajax({
                 method: 'POST',
@@ -51,6 +56,10 @@
                 contentType: 'application/JSON',
                 success: function (res) {
                     console.log(res);
+                    self._inputSavePassword.checked ?
+                    	localStorage.setItem('taskToken', res._id) :
+                    	sessionStorage.setItem('taskToken', res._id);
+                    window.location = '/task';
                 },
                 error: function (err) {
                     console.log(err)

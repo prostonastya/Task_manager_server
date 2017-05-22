@@ -5,10 +5,10 @@
 		var taskLink = $('.toggle-task-list a');
 		var taskContent = $('.task-content');
 		var taskHeader = $('.task-header');
+		var addTaskBtn = $('.add-task');
 		var overlay = $('.overlay');
 		var editTaskBlock = $('.edit-task');
 
-		var addTaskBtn = $('.add-task');
 		function tabTask(e) {
 			e.preventDefault();
 			// получить значение ссылки

@@ -55,12 +55,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     });
                     console.log(self._formData);
 
-                    self._canSend ? self.sendFormAjax(self._formData) : console.error('input regexp test error');
+                    self._canSend ? self.sendFormAjax(self._formData, self) : console.error('input regexp test error');
                 });
             }
         }, {
             key: 'sendFormAjax',
-            value: function sendFormAjax(data) {
+            value: function sendFormAjax(data, self) {
                 console.log('all');
                 $.ajax({
                     method: 'POST',
@@ -68,4 +68,24 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                     contentType: 'application/JSON',
                     success: function success(res) {
                         console.log(res);
-                        self._inputSavePassword.checked ? localStorage.setItem('taskToken', res._id) : sessi
+                        self._inputSavePassword.checked ? localStorage.setItem('taskToken', res._id) : sessionStorage.setItem('taskToken', res._id);
+                        window.location = '/task';
+                    },
+                    error: function error(err) {
+                        console.log(err);
+                    }
+                });
+            }
+
+            // generateTocken(){
+
+            // }
+
+        }]);
+
+        return Login;
+    }();
+
+    var newLogin = new Login();
+    newLogin.init();
+})(jQuery);
